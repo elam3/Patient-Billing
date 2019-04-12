@@ -19,7 +19,7 @@ Different components:
 
 ## Pharmacy class
 * will have prices of at least 5 types of medication
-* can update teh charges variable of the PatientAccount class
+* can update the charges variable of the PatientAccount class
 
 ## main program
 * design a menu

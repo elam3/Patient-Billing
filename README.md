@@ -1,8 +1,15 @@
 # Patient Billing
 
 ## Table Of Contents
+* [Installation](#installation)
 * [Specification](#specification)
 * [Design Decisions](#design-decisions)
+
+---
+
+## Installation
+
+Compiling: `g++ PatientBilling.cc Surgery.cc Pharmacy.cc PatientAccount.cc`
 
 ---
 

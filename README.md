@@ -2,7 +2,7 @@
 
 ## Table Of Contents
 * [Specification](#specification)
-* [Design Decisions](#design-decision)
+* [Design Decisions](#design-decisions)
 
 ---
 

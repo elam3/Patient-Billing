@@ -8,10 +8,14 @@ using namespace std;
 void displaySurgery();
 int getValidUserInput(const int, const int, string);
 Surgery::Procedures intToSurgeryProcedure(int);
+void displayDrugs();
+Pharmacy::Drugs intToPharmacyDrug(int);
 
 int main() {
     const int MIN_SURGERY_INDEX = 0,
-          MAX_SURGERY_INDEX = 9;
+          MAX_SURGERY_INDEX = 9,
+          MIN_DRUG_INDEX = 0,
+          MAX_DRUG_INDEX = 9;
 
     cout << fixed << setprecision(2);
     PatientAccount *patient = new PatientAccount();
@@ -25,8 +29,9 @@ int main() {
 
     //Choose a medication
     Pharmacy pharmacy(patient);
-    cout << "What medication were you prescribed?\n";
-    pharmacy.acrueCostOfIbuprofen();
+    displayDrugs();
+    int userChosenDrug = getValidUserInput(MIN_DRUG_INDEX, MAX_DRUG_INDEX, "What medication were you prescribed? (Index Number): ");
+    pharmacy.acrueCostOf(intToPharmacyDrug(userChosenDrug));
 
     //Checkout from hospital
     cout << "Your medical bill totals to: $"
@@ -107,4 +112,43 @@ int getValidUserInput(const int MIN, const int MAX, string prompt) {
         }
     } while (!isValidInput);
     return userInput;
+}
+
+void displayDrugs() {
+    cout << "0. Atorvastatin\n"
+        << "1. Lisinopril\n"
+        << "2. Levothyroxine,\n"
+        << "3. Amlodipine,\n"
+        << "4. Ibuprofen,\n"
+        << "5. Amoxicillin,\n"
+        << "6. Acetaminophen,\n"
+        << "7. Omeprazole,\n"
+        << "8. Prednisone,\n"
+        << "9. Losartan\n"
+        << endl;
+}
+
+Pharmacy::Drugs intToPharmacyDrug(int num) {
+    switch (num) {
+        case 0:
+            return Pharmacy::Drugs::ATORVASTATIN;
+        case 1:
+            return Pharmacy::Drugs::LISINOPRIL;
+        case 2:
+            return Pharmacy::Drugs::LEVOTHYROXINE;
+        case 3:
+            return Pharmacy::Drugs::AMLODIPINE;
+        case 4:
+            return Pharmacy::Drugs::IBUPROFEN;
+        case 5:
+            return Pharmacy::Drugs::AMOXICILLIN;
+        case 6:
+            return Pharmacy::Drugs::ACETAMINOPHEN;
+        case 7:
+            return Pharmacy::Drugs::OMEPRAZOLE;
+        case 8:
+            return Pharmacy::Drugs::PREDNISONE;
+        case 9:
+            return Pharmacy::Drugs::LOSARTAN;
+    }
 }

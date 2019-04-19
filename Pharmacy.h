@@ -1,10 +1,24 @@
 #ifndef PHARMACY_H
 #define PHARMACY_H
 #include "PatientAccount.h"
+#include <iostream>
+using namespace std;
 class Pharmacy {
 private:
     PatientAccount *patient;
 public:
+    enum Drugs {
+        ATORVASTATIN,
+        LISINOPRIL,
+        LEVOTHYROXINE,
+        AMLODIPINE,
+        IBUPROFEN,
+        AMOXICILLIN,
+        ACETAMINOPHEN,
+        OMEPRAZOLE,
+        PREDNISONE,
+        LOSARTAN
+    };
     const double COST_ATORVASTATIN = 11.0,
           COST_LISINOPRIL = 5.0,
           COST_LEVOTHYROXINE = 10.0,
@@ -16,15 +30,7 @@ public:
           COST_PREDNISONE = 4.0,
           COST_LOSARTAN = 9.0;
     Pharmacy(PatientAccount *patient);
-    void acrueCostOfAtorvastatin();
-    void acrueCostOfLisinopril();
-    void acrueCostOfLevothyroxine();
-    void acrueCostOfAmlodipine();
-    void acrueCostOfIbuprofen();
-    void acrueCostOfAmoxicillin();
-    void acrueCostOfAcetaminophen();
-    void acrueCostOfOmeprazole();
-    void acrueCostOfPrednisone();
-    void acrueCostOfLosartan();
+    friend ostream& operator<<(ostream& os, Pharmacy::Drugs drug);
+    void acrueCostOf(Pharmacy::Drugs drug);
 };
 #endif

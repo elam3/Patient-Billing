@@ -10,28 +10,43 @@ int getValidUserInput(const int, const int, string);
 Surgery::Procedures intToSurgeryProcedure(int);
 void displayDrugs();
 Pharmacy::Drugs intToPharmacyDrug(int);
+void insertHorizontalRule();
 
 int main() {
     const int MIN_SURGERY_INDEX = 0,
           MAX_SURGERY_INDEX = 9,
           MIN_DRUG_INDEX = 0,
           MAX_DRUG_INDEX = 9;
-
     cout << fixed << setprecision(2);
-    PatientAccount *patient = new PatientAccount();
-    cout << "Welcome to the hospital, and how can we be of service?\n";
+
+    cout << "Thank you for choosing our hospital!\n"
+        << "\nPlease answer the following questionnaire for self-checkout:\n";
+
+    insertHorizontalRule();
+
+    int lengthOfStay = getValidUserInput(0, numeric_limits<int>::max(), "How many days did you stay in the hospital? ");
+    PatientAccount *patient = new PatientAccount(lengthOfStay);
+    cout << endl;
+
+    insertHorizontalRule();
 
     //Choose a surgery type
     Surgery surgery(patient);
+    cout << "What surgery did you have?\n";
     displaySurgery();
-    int userChosenSurgery = getValidUserInput(MIN_SURGERY_INDEX, MAX_SURGERY_INDEX, "What surgery did you have? (Index Number): ");
+    int userChosenSurgery = getValidUserInput(MIN_SURGERY_INDEX, MAX_SURGERY_INDEX, "(Index Number): ");
     surgery.acrueCostOf(intToSurgeryProcedure(userChosenSurgery));
+
+    insertHorizontalRule();
 
     //Choose a medication
     Pharmacy pharmacy(patient);
+    cout << "What medication were you prescribed?\n";
     displayDrugs();
-    int userChosenDrug = getValidUserInput(MIN_DRUG_INDEX, MAX_DRUG_INDEX, "What medication were you prescribed? (Index Number): ");
+    int userChosenDrug = getValidUserInput(MIN_DRUG_INDEX, MAX_DRUG_INDEX, "(Index Number): ");
     pharmacy.acrueCostOf(intToPharmacyDrug(userChosenDrug));
+
+    insertHorizontalRule();
 
     //Checkout from hospital
     cout << "Your medical bill totals to: $"
@@ -40,10 +55,7 @@ int main() {
         * patient->COST_PER_INPATIENT_DAY
     << endl;
 
-    //cout << Surgery::SurgicalProcedures::HEART_BYPASS << endl;
-    Surgery::Procedures p = Surgery::Procedures::HEART_BYPASS;
-    cout << p << endl;
-    cout << "Thank you for using our services.\n";
+    cout << "\nThank you for using our services.\n";
 
     delete patient;
     return 0;
@@ -151,4 +163,8 @@ Pharmacy::Drugs intToPharmacyDrug(int num) {
         case 9:
             return Pharmacy::Drugs::LOSARTAN;
     }
+}
+
+void insertHorizontalRule() {
+    cout << "\n--------------------------------------------------\n\n";
 }

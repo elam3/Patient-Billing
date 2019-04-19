@@ -50,4 +50,6 @@ Initially, I thought I would make constant variables for each type surgery and m
 
 I was thinking that maybe this situation feels like a Factory Method kind of problem. Do I want to decouple creation and processing logic? On the one hand, I thought it would help make the system easier to extend. But on the other hand, I wasn't sure if having an entire class dedicated to a surgery type, and a medication type was necessary.
 
-The next idea was to try to use an enum to fit the data. I don't know if this approach is any better.
+The next idea was to try to use an enum to fit the data. I don't know if this approach is any better, because the switch statements used to filter the enums still seemed a little hectic to maintain.
+
+Next idea was to perhaps use a dictionary structure instead. But since we won't be using STL in class just yet, I thought it would be better to hold off on that idea for now and simply stick with the enum.
